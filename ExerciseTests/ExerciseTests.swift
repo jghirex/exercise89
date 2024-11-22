@@ -32,5 +32,38 @@ final class ExerciseTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+	
+	func testCarModelValidator2() throws {
+		let carModelValidator = CarModelValidator()
+		let model = "ab"
+		let r = carModelValidator.validate(model)
+		XCTAssertNotNil(r)
+	}
 
+	func testCarModelValidator3() throws {
+		let carModelValidator = CarModelValidator()
+		let model = "abc"
+		let r = carModelValidator.validate(model)
+		XCTAssertNil(r)
+	}
+
+	func testCarModelValidator4() throws {
+		let carModelValidator = CarModelValidator()
+		let model = "abcd"
+		let r = carModelValidator.validate(model)
+		XCTAssertNil(r)
+	}
+	
+	func testTrafficLightsPhasesIterator() throws {
+		var phasesIterator = TrafficLightsPhasesIterator()
+		let p1 = phasesIterator.nextPhase()
+		let p2 = phasesIterator.nextPhase()
+		let p3 = phasesIterator.nextPhase()
+		let p4 = phasesIterator.nextPhase()
+		
+		XCTAssert(p1 == (.green, 4))
+		XCTAssert(p2 == (.orange, 1))
+		XCTAssert(p3 == (.red, 4))
+		XCTAssert(p4 == (.green, 4))
+	}
 }
